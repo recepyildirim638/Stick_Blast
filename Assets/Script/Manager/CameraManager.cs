@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public float temp = 1f;
-    private void Start()
+    public float temp = 5f;
+    private Camera cam;
+    void Start()
     {
+        cam = Camera.main;
         AdjustCameraSize();
     }
+
    
+
     void AdjustCameraSize()
     {
-        Camera cam = Camera.main;
-
-        float gameWidth = Screen.width;
-        float gameHeight = Screen.height;
 
         float screenRatio = (float)Screen.width / Screen.height;
 
-        float requiredWidth = gameHeight * screenRatio;
+       
+        float gameWidth = 10f; 
+        float gameHeight = 5f;  
 
 
-        if (requiredWidth > gameWidth)
+        float newSize = (gameHeight / 2f) * temp;
+
+
+        if (gameWidth / gameHeight > screenRatio)
         {
-            cam.orthographicSize = (gameHeight / 2f) * temp;
+            newSize = (gameWidth / (2f * screenRatio)) * temp;
         }
-        else
-        {
-            cam.orthographicSize = (gameWidth / (2f * screenRatio) ) * temp;
-        }
+
+
+        cam.orthographicSize = newSize;
     }
 }
