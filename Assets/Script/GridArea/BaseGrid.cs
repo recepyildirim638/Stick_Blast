@@ -8,6 +8,13 @@ public abstract class BaseGrid : MonoBehaviour
     [SerializeField] protected Vector2Byte point;
     public Vector2Byte GetPoint() => point;
 
+    public void SetPoint(Vector2Byte point)
+    {
+        ClearGrid();
+        this.point = point;
+    }
+
+
     [SerializeField] protected SpriteRenderer mainSprite;
 
     [SerializeField] protected bool isFill;

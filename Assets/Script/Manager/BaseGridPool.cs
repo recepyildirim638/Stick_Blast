@@ -1,15 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PoolManager : MonoSingleton<PoolManager>
+public class BaseGridPool : MonoBehaviour
 {
-    [SerializeField] private Pool[] pools;
-    public GameObject GetPoolItem(POOL_TYPE items)
+    [SerializeField] private PoolBaseGrid[] pools;
+
+    public GameObject GetPoolItem(BASEGRID_TYPE items)
     {
-        Pool pool = GetPoolCell(items);
+        PoolBaseGrid pool = GetPoolCell(items);
         GameObject resultObject = null;
 
         for (int i = 0; i < pool.poolObjects.Count; i++)
@@ -17,7 +17,6 @@ public class PoolManager : MonoSingleton<PoolManager>
             if (pool.poolObjects[i].gameObject.activeSelf == false)
             {
                 resultObject = pool.poolObjects[i].gameObject;
-
                 resultObject.SetActive(true);
                 return resultObject;
             }
@@ -29,7 +28,7 @@ public class PoolManager : MonoSingleton<PoolManager>
         return resultObject;
     }
 
-    Pool GetPoolCell(POOL_TYPE items)
+    PoolBaseGrid GetPoolCell(BASEGRID_TYPE items)
     {
         if ((int)items > pools.Length)
             return pools[0];
@@ -37,26 +36,16 @@ public class PoolManager : MonoSingleton<PoolManager>
             return pools[(int)items];
     }
 
-    public void HideAllPool()
-    {
-        for (int i = 0; i < pools.Length; i++)
-        {
-            for(int j = 0; j <  pools[i].poolObjects.Count; j++)
-            {
-                pools[i].poolObjects[j].SetActive(false);
-            }
-        }
-    }
+    
 
 
     [Serializable]
-    struct Pool
+    struct PoolBaseGrid
     {
-        public POOL_TYPE type;
+        public BASEGRID_TYPE type;
         public GameObject poolObjectPrefab;
         public List<GameObject> poolObjects;
     }
-
-  
 }
+
 

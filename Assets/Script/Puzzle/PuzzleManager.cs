@@ -16,7 +16,34 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
     List<Puzzle> createdPuzle = new List<Puzzle>();
 
     int added = 0;
-   
+
+    private void OnEnable()
+    {
+        ActionManager.GridAreaReady += GridAreaReadyFunc;
+
+    }
+    private void OnDisable()
+    {
+        ActionManager.GridAreaReady -= GridAreaReadyFunc;
+
+    }
+
+    private void GridAreaReadyFunc()
+    {
+        SetPosition();
+        CreatePuzzle();
+    }
+    void SetPosition()
+    {
+        Camera cam = Camera.main;
+        float height = cam.orthographicSize * 2f;
+        Vector3 camPos = cam.transform.position;
+
+        float bottomPos = (camPos.y - height / 2) + 10f;
+        transform.position = new Vector3(0f, bottomPos, 0f);    
+
+      
+    }
 
     public void CollectPuzzle(Puzzle puzzle)
     {

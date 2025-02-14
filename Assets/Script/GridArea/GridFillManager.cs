@@ -5,11 +5,49 @@ using UnityEngine;
 
 public class GridFillManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] fillSquareList;
+    GameObject[] fillSquareList;
 
     int width = 5;
     int height = 5;
-    
+
+   
+    [SerializeField] Transform baseParent;
+
+    BaseGridPool pool;
+
+    private void Start()
+    {
+        pool = GetComponent<BaseGridPool>();
+    }
+
+    public void Create(Vector2Int size)
+    {
+        width = size.x;
+        height = size.y;
+
+        fillSquareList = new GameObject[(size.x) * (size.y)];
+        int index = 0;
+
+        for (int i = 0; i < size.y; i++)
+        {
+            for (int j = 0; j < size.x; j++)
+            {
+                GameObject obj = pool.GetPoolItem(BASEGRID_TYPE.FILL);
+                obj.transform.parent = baseParent;
+               
+                obj.transform.localPosition = new Vector2(j * 6f, i * (-6f));
+                fillSquareList[index] = obj;
+                index++;
+
+            }
+        }
+
+        for (int i = 0;i < fillSquareList.Length; i++) 
+        {
+            fillSquareList[i].SetActive(false);
+        }
+    }
+
     public void OpenGrid(int value)
     {
         fillSquareList[value].SetActive(true);
@@ -19,7 +57,6 @@ public class GridFillManager : MonoBehaviour
 
     public void ResetAll()
     {
-
         for (int i = 0; i < fillSquareList.Length; i++)
         {
             fillSquareList[i].SetActive(false);
@@ -36,7 +73,7 @@ public class GridFillManager : MonoBehaviour
     }
     public void ClearHorizontal(int line)
     {
-        for (int i = 0; i < height; i++)
+        for (int i = 0; i < width; i++)
         {
             fillSquareList[i + (line * width)].GetComponent<FillSquare>().ClearGrid();
             ActionManager.ClearGrid?.Invoke(i + (line * width));

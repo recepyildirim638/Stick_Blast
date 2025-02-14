@@ -14,4 +14,7 @@ public class ActionManager : MonoBehaviour
     public static Action<Vector3> CollectDiamaont { get; set; }
     public static Action<Vector3> CollectStar { get; set; }
     public static Action ChangeSound { get;  set; }
+    
+    
+    public static Action GridAreaReady { get; set; }
 }

@@ -13,6 +13,22 @@ public class LevelTaskManager : MonoBehaviour
     int diamontTask = 0;
     int starTask = 0;
 
+    private void OnEnable()
+    {
+        ActionManager.GridAreaReady += GridAreaReadyFunc;
+
+    }
+    private void OnDisable()
+    {
+        ActionManager.GridAreaReady -= GridAreaReadyFunc;
+
+    }
+
+    private void GridAreaReadyFunc()
+    {
+        SetLevelTask();
+    }
+
 
     public void CollectDiamont()
     {

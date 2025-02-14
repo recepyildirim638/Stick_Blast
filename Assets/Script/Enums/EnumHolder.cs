@@ -11,3 +11,11 @@ public enum AUDIO_TYPE
     FILL,
     CLEAR_LINE
 }
+
+public enum BASEGRID_TYPE
+{
+    CORNER,
+    VERTICLE,
+    HORIZONTAL,
+    FILL
+}

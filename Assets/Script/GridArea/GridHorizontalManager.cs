@@ -4,19 +4,50 @@ using UnityEngine;
 
 public class GridHorizontalManager : MonoBehaviour
 {
-    [SerializeField] BaseGrid[] horizontallLines;
+    BaseGrid[] horizontallLines;
     List<BaseGrid> horizontalLineList = new List<BaseGrid>();
 
     GridVerticalManager gridVerticalManager;
 
+
+    [SerializeField] Transform baseParent;
+    BaseGridPool pool;
+
     private void Start()
     {
         gridVerticalManager = GetComponent<GridVerticalManager>();
+        pool = GetComponent<BaseGridPool>();
     }
     public BaseGrid[] GetHorizontallLines() => horizontallLines;
 
     int width = 5;
     int height = 5;
+
+
+    public void Create(Vector2Int size)
+    {
+        width = size.x;
+        height = size.y;
+
+        int index = 0;
+        horizontallLines = new BaseGrid[(size.x)* (size.y + 1)];
+
+        for (int i = 0; i < size.y + 1; i++)
+        {
+            for (int j = 0; j < size.x; j++)
+            {
+                GameObject obj = pool.GetPoolItem(BASEGRID_TYPE.HORIZONTAL);
+                obj.transform.parent = baseParent;
+                obj.transform.localPosition = new Vector2(j * 6f, i * (-6f));
+
+                BaseGrid baseGrid = obj.GetComponent<BaseGrid>();
+
+                baseGrid.SetPoint(new Vector2Byte((byte)j, (byte)i));
+                horizontallLines[index] = baseGrid;
+                index++;
+            }
+        }
+    }
 
     public void ResetAll()
     {

@@ -1,17 +1,15 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public static bool ISGAME  = false;
-    [SerializeField] LevelTaskManager levelTaskManager;
+   // [SerializeField] LevelTaskManager levelTaskManager;
     public DataManager dataManager;
     [SerializeField] AudioManager audioManager;
-    [SerializeField] LevelUI levelUI;
-    [SerializeField] MoveCount moveCountUI;
+  //  [SerializeField] LevelUI levelUI;
+   // [SerializeField] MoveCount moveCountUI;
     MainData mainData;
 
     int moveCount = 0;
@@ -20,19 +18,26 @@ public class GameManager : MonoSingleton<GameManager>
         dataManager.Initalize();
         mainData = dataManager.GetMainData();
         audioManager.GameLoaded(mainData.sound);
-        levelUI.SetLevelIndex(mainData.level);
-        moveCountUI.SetMoveIndex(moveCount);
+     //   levelUI.SetLevelIndex(mainData.level);
+       // moveCountUI.SetMoveIndex(moveCount);
 
         ISGAME = true;
         SetNewGame();
     }
     private void OnEnable()
     {
+        ActionManager.GridAreaReady += GridAreaReadyFunc;
         ActionManager.ChangeSound += ChangeSoundFunc;
     }
     private void OnDisable()
     {
+        ActionManager.GridAreaReady -= GridAreaReadyFunc;
         ActionManager.ChangeSound -= ChangeSoundFunc;
+    }
+
+    private void GridAreaReadyFunc()
+    {
+      
     }
 
     private void ChangeSoundFunc()
@@ -47,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void AddMove()
     {
         moveCount++;
-        moveCountUI.SetMoveIndex(moveCount);
+      //  moveCountUI.SetMoveIndex(moveCount);
     }
 
 
@@ -75,12 +80,12 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetNewGame()
     {
-        levelTaskManager.SetLevelTask();
-        PuzzleManager.Instance.CreatePuzzle();
+       // levelTaskManager.SetLevelTask();
+       // PuzzleManager.Instance.CreatePuzzle();
         ISGAME = true;
-        levelUI.SetLevelIndex(mainData.level);
+       // levelUI.SetLevelIndex(mainData.level);
 
-        moveCount = 0;
-        moveCountUI.SetMoveIndex(moveCount);
+        //moveCount = 0;
+        //moveCountUI.SetMoveIndex(moveCount);
     }
 }

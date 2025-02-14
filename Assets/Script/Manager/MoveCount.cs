@@ -4,6 +4,23 @@ using UnityEngine;
 public class MoveCount : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI levelText;
+    int moveCount = 0;
+     private void OnEnable()
+    {
+        ActionManager.GridAreaReady += GridAreaReadyFunc;
 
-    public void SetMoveIndex(int val) => levelText.text = "Move: " + (val ).ToString();
+    }
+    private void OnDisable()
+    {
+        ActionManager.GridAreaReady -= GridAreaReadyFunc;
+
+    }
+
+    private void GridAreaReadyFunc()
+    {
+        moveCount = 0;
+        SetMoveIndex();
+    }
+
+    public void SetMoveIndex() => levelText.text = "Move: " + (moveCount).ToString();
 }

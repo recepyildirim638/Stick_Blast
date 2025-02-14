@@ -12,11 +12,18 @@ public class GridManager : MonoSingleton<GridManager>
     GridVerticalManager gridVerticalManager;
     GridHorizontalManager gridHorizontalManager;
     GridCornerManager gridCornerManager;
+    GridCreator gridCreator;
 
     private bool isOk = false;
 
+    public void CreatNewGame(Vector2Int size)
+    {
+        gridCreator.Create(size);
+    }
+
     private void Start()
     {
+        gridCreator = GetComponent<GridCreator>();
         fillManager = GetComponent<GridFillManager>();
         gridVerticalManager = GetComponent<GridVerticalManager>();
         gridHorizontalManager = GetComponent<GridHorizontalManager>();
@@ -79,7 +86,7 @@ public class GridManager : MonoSingleton<GridManager>
 
     private void ComplateQuad()
     {
-        for(int i = 0;i < gridHorizontalManager.GetHorizontallLines().Length - 5; i++)
+        for(int i = 0;i < gridHorizontalManager.GetHorizontallLines().Length - gridCreator.GetGridSize().x; i++) //width 
         {
             if (ControlQuad(gridHorizontalManager.GetHorizontallLines()[i].GetPoint()))
             {
@@ -101,6 +108,7 @@ public class GridManager : MonoSingleton<GridManager>
         if (resut == false) return false;
 
         p = point + new Vector2Byte(0, 1);
+        Debug.Log(p);
         resut = gridHorizontalManager.GetHorizontalLineGrid(p).GetFill();
 
         if(resut == false) return false;

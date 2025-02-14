@@ -1,18 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridVerticalManager : MonoBehaviour
 {
-    [SerializeField] BaseGrid[] verticalLines;
+    BaseGrid[] verticalLines;
     List<BaseGrid> verticalLineList = new List<BaseGrid>();
     GridHorizontalManager gridHorizontalManager;
 
+    [SerializeField] Transform baseParent;
+    BaseGridPool pool;
     int width = 5;
     int height = 5;
     private void Start()
     {
         gridHorizontalManager = GetComponent<GridHorizontalManager>();
+        pool = GetComponent<BaseGridPool>();
+    }
+
+    public void Create(Vector2Int size)
+    {
+        width = size.x;
+        height = size.y;
+
+        int index = 0;
+        verticalLines = new BaseGrid[(size.x + 1) * (size.y)];
+
+        for (int i = 0; i < size.x + 1; i++)
+        {
+            for (int j = 0; j < size.y ; j++)
+            {
+                // GameObject obj = Instantiate(baseGrid, baseParent);
+                GameObject obj = pool.GetPoolItem(BASEGRID_TYPE.VERTICLE);
+                obj.transform.parent = baseParent;
+                obj.transform.localPosition = new Vector2(i * 6f, j * (-6f));
+
+                BaseGrid baseGrid = obj.GetComponent<BaseGrid>();
+                baseGrid.SetPoint(new Vector2Byte((byte)i, (byte)j));
+                verticalLines[index] = baseGrid;
+                index++;
+            }
+        }
     }
 
     public void ResetAll()

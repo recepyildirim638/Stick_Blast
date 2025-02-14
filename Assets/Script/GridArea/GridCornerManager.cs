@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,21 +6,48 @@ using UnityEngine;
 
 public class GridCornerManager : MonoBehaviour
 {
-    [SerializeField] BaseGrid[] corners;
+    BaseGrid[] corners;
     List<BaseGrid> cornersHoverList = new List<BaseGrid>();
 
     GridVerticalManager gridVerticalManager;
     GridHorizontalManager gridHorizontalManager;
+    BaseGridPool pool;
 
     int width = 5;
     int height = 5;
+
+   
+    [SerializeField] Transform baseParent;
 
     private void Start()
     {
         gridVerticalManager = GetComponent<GridVerticalManager>();
         gridHorizontalManager = GetComponent<GridHorizontalManager>();
+        pool = GetComponent<BaseGridPool>();
     }
 
+    public void Create(Vector2Int size)
+    {
+        width = size.x;
+        height = size.y;
+        int index = 0;
+        corners = new BaseGrid[(size.x + 1) * (size.y + 1)];
+
+        for (int i = 0; i < size.y + 1; i++)
+        {
+            for(int j = 0; j < size.x + 1; j++)
+            {
+                GameObject obj = pool.GetPoolItem(BASEGRID_TYPE.CORNER);
+                obj.transform.parent = baseParent;
+                obj.transform.localPosition = new Vector2(j * 6f, i * (-6f));
+                BaseGrid baseGrid = obj.GetComponent<BaseGrid>();
+                baseGrid.SetPoint(new Vector2Byte((byte) j, (byte) i));
+
+                corners[index] = baseGrid;
+                index++;
+            }
+        }
+    }
     
 
     public BaseGrid[] GetAllCorners() => corners;

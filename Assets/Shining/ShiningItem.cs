@@ -14,14 +14,17 @@ public class ShiningItem : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         PlayShine();
     }
-  
-	private void PlayShine()
+    private void OnDisable()
+    {
+        isLock = false;
+    }
+
+    private void PlayShine()
 	{
 		if (!isLock)
 		{
 			isLock = true;
 			StartCoroutine(Shine());
-
 		}
     }
 	IEnumerator Shine () {
