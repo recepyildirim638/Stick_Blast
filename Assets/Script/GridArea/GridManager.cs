@@ -30,6 +30,8 @@ public class GridManager : MonoSingleton<GridManager>
         gridCreator.Create(size);
     }
 
+    public Vector2Int GetGameSize() => gridCreator.GetGridSize();
+
     private void Start()
     {
         gridCreator = GetComponent<GridCreator>();
@@ -132,8 +134,10 @@ public class GridManager : MonoSingleton<GridManager>
         if (resut == false) return false;
 
         return resut;
-
     }
+
+   
+
     public void HoverPuzzle(PuzzleData puzzleData, BaseGrid baseGrid)
     {
         isOk = false;
@@ -177,5 +181,22 @@ public class GridManager : MonoSingleton<GridManager>
         }
         return false;
     }
-   
+
+    public int  PreControlPlacementCount(PuzzleData puzzleData)
+    {
+        BaseGrid[] corners = gridCornerManager.GetAllCorners();
+        int count = 0;
+
+        for (int i = 0; i < corners.Length; i++)
+        {
+            bool v = gridVerticalManager.SuccessStatus(puzzleData, corners[i].GetPoint());
+            bool h = gridHorizontalManager.SuccessStatus(puzzleData, corners[i].GetPoint());
+
+            if (v == true && h == true)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }

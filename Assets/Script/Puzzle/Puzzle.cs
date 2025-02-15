@@ -16,7 +16,7 @@ public class Puzzle : MonoBehaviour, IMoveable
     [SerializeField] 
     Vector3 startScale = Vector3.one;
 
-   private GameAudioManager audioManager;
+
 
     private void Start()
     {
@@ -26,11 +26,7 @@ public class Puzzle : MonoBehaviour, IMoveable
 
     }
 
-    [Inject]
-    private void Constuructor(GameAudioManager audioManager)
-    {
-        this.audioManager = audioManager;
-    }
+    public PuzzleData GetData() { return data; }
 
     public void SetStartPos(Vector3 pos) => startPos = pos;
 
@@ -42,7 +38,7 @@ public class Puzzle : MonoBehaviour, IMoveable
    
     private Vector2 GetScreenToWorldPosition()
     {
-        Vector3 worldPos =cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
         return new Vector2(worldPos.x, worldPos.y);
     }
     private void OnMouseEnter()
@@ -64,7 +60,7 @@ public class Puzzle : MonoBehaviour, IMoveable
     public void Move(Vector3 pos)
     {
         transform.localScale = Vector3.one;
-        transform.position = pos.Add(x: manager.movePuzzleSelectAddVector.x, y: 8f);
+        transform.position = pos.Add(y: 8f);
         SetMoveableObject();
     }
 

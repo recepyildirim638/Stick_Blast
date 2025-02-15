@@ -93,14 +93,15 @@ public class LevelTaskManager : MonoBehaviour
     IEnumerator CreateEnumerator()
     {
         List<int> addedList = new List<int>();
-       
+        Vector2Int gameSize = GridManager.Instance.GetGameSize();
+        int size = gameSize.x * gameSize.y ;
 
         while (true)
         {
             if (addedList.Count == diamontTask)
                 break;
-
-            int rnd = Random.Range(0, 25);
+            
+            int rnd = Random.Range(0, size);
 
             if (!addedList.Contains(rnd))
             {
@@ -118,7 +119,7 @@ public class LevelTaskManager : MonoBehaviour
             if (addedList.Count == diamontTask + starTask)
                 break;
 
-            int rnd = Random.Range(0, 25);
+            int rnd = Random.Range(0, size);
 
             if (!addedList.Contains(rnd))
             {
