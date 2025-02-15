@@ -36,7 +36,8 @@ public class GameWinPanelUI : MonoBehaviour
 
     private void NewGameButtonOnClick()
     {
-        GameManager.Instance.SetNewGame();
+        // GameManager.Instance.SetNewGame();
+        ActionManager.ResetGameArea?.Invoke();
         panel.SetActive(false);
     }
 }

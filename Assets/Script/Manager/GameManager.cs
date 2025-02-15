@@ -55,20 +55,20 @@ public class GameManager : MonoSingleton<GameManager>
         ISGAME = false;
         mainData.level++;
 
-        DOVirtual.DelayedCall(1.6f, () => {
-            GridManager.Instance.ResetAll();
-            PuzzleManager.Instance.ResetAll();
-        });
+        //DOVirtual.DelayedCall(1.6f, () => {
+        //    GridManager.Instance.ResetAll();
+        //    PuzzleManager.Instance.ResetAll();
+        //});
 
     }
 
     public void GameFail()
     {
         ISGAME = false;
-        DOVirtual.DelayedCall(1.6f, () => {
-            GridManager.Instance.ResetAll();
-            PuzzleManager.Instance.ResetAll();
-        });
+        //DOVirtual.DelayedCall(1.6f, () => {
+        //    GridManager.Instance.ResetAll();
+        //    PuzzleManager.Instance.ResetAll();
+        //});
 
     }
 

@@ -29,7 +29,6 @@ public class GameEndPanel : MonoBehaviour
 
     private void GameEndFailFunc()
     {
-        
         panel.SetActive(true);
         menu.gameObject.SetActive(true);
         menu.anchoredPosition = new Vector3(0, 2000f, 0);
@@ -41,7 +40,6 @@ public class GameEndPanel : MonoBehaviour
         menu.gameObject.SetActive(false);
         panel.SetActive(false);
         ActionManager.ResetGameArea?.Invoke();
-      //  GameManager.Instance.SetNewGame();
     }
   
 }
