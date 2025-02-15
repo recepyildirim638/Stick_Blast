@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class ColButtonUI : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ColButtonUI : MonoBehaviour
     int val = 5;
     [SerializeField] int maxValue = 10;
     [SerializeField] int minValue = 4;
+
+    [Inject] DataManager dataManager;
 
     private void Start()
     {
@@ -29,8 +32,8 @@ public class ColButtonUI : MonoBehaviour
     {
         val++;
 
-        if (val > maxValue)
-            val = minValue;
+        if (val > dataManager.GetMainData().maxGridSize)
+            val = dataManager.GetMainData().minGridSize;
 
         valueText.text = val.ToString();
     }

@@ -1,10 +1,26 @@
 using System;
 using UnityEngine;
-using Zenject;
+
+[Serializable]
+public struct Spaces
+{
+    public bool space1;
+    public bool space2;
+    public bool space3;
+    public bool space4;
+    public bool space5;
+    public bool space6;
+    public bool space7;
+    public bool space8;
+    public bool space9;
+}
 
 
 public class Puzzle : MonoBehaviour, IMoveable
 {
+    [SerializeField] Spaces typer;
+
+
     [SerializeField] PuzzleData data;
     [SerializeField] Transform rayPoint;
 

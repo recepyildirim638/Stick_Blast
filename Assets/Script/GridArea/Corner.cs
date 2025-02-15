@@ -4,9 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+
 public class Corner : BaseGrid, ISelectiable
 {
-  
+   
     public void OnMove(PuzzleData puzzleData)
     {
         GridManager.Instance.HoverPuzzle(puzzleData, this);

@@ -17,6 +17,10 @@ public class MyGameData : ScriptableObject
         mainData.sound = true;
         mainData.music = true;
 
+        mainData.level = 0;
+        mainData.minGridSize = 4;
+        mainData.maxGridSize = 10;
+
         PlayerPrefs.DeleteAll();
         SaveManager.SaveGameData(this);
     }

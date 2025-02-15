@@ -16,6 +16,8 @@ public class MainData
     public bool vibration;
 
     public int level;
+    public int minGridSize;
+    public int maxGridSize;
 }
 
 

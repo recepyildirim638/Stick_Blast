@@ -47,6 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3dd00cd0e27de43acf031630606734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typer:
+    space1: 1
+    space2: 0
+    space3: 0
+    space4: 1
+    space5: 0
+    space6: 0
+    space7: 1
+    space8: 1
+    space9: 1
   data:
     Horizontal:
     - x: 0
@@ -55,6 +65,7 @@ MonoBehaviour:
       y: 0
     Vertival: []
   rayPoint: {fileID: 6355835964393634350}
+  startScale: {x: 1, y: 1, z: 1}
 --- !u!61 &1005934503249840051
 BoxCollider2D:
   m_ObjectHideFlags: 0
