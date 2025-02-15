@@ -18,8 +18,8 @@ public struct Spaces
 
 public class Puzzle : MonoBehaviour, IMoveable
 {
-    [SerializeField] Spaces typer;
-
+    [SerializeField] MyLevelData levelData;
+   
 
     [SerializeField] PuzzleData data;
     [SerializeField] Transform rayPoint;
@@ -32,7 +32,28 @@ public class Puzzle : MonoBehaviour, IMoveable
     [SerializeField] 
     Vector3 startScale = Vector3.one;
 
-
+    [ContextMenu("test")]
+    public void Test()
+    {
+        for (int i = 0; i < levelData.size.y; i++)
+        {
+            bool result = true;
+            for(int j = 0; j < levelData.size.x; j++)
+            {
+                if (!levelData.GetSpace(j, i))
+                {
+                   result = false;
+                }
+            }
+            
+            if(result)
+            {
+                Debug.Log(i);
+            }
+               
+          
+        }
+    }
 
     private void Start()
     {

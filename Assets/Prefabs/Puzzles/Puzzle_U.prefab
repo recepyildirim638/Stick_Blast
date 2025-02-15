@@ -49,6 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3dd00cd0e27de43acf031630606734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData:
+    size: {x: 3, y: 3}
+    spaces: 010001010001010101
   data:
     Horizontal:
     - x: 0
