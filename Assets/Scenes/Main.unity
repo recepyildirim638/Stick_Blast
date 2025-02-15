@@ -5447,7 +5447,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1780468606}
   - component: {fileID: 1780468605}
-  - component: {fileID: 1780468607}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5487,22 +5486,6 @@ Transform:
   - {fileID: 189139737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1780468607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780468604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956be1f440b49d34cae2309c25edeada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraManager: {fileID: 519420034}
-  gameManager: {fileID: 1780468605}
-  gridManager: {fileID: 1635720999}
-  dataManager: {fileID: 189139738}
 --- !u!1 &1835838524
 GameObject:
   m_ObjectHideFlags: 0

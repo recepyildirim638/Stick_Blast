@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class CreateNewGamePanel : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class CreateNewGamePanel : MonoBehaviour
     private void ButtonOnClick()
     {
         Vector2Int size = new Vector2Int(rowButton.GetVal(), colButton.GetVal());
-        AccsessManager.Instance.gridManager.CreatNewGame(size);
+       
+        GridManager.Instance.CreatNewGame(size);
         panel.SetActive(false);
     }
 }

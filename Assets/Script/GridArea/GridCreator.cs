@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using Zenject;
 
 public class GridCreator : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GridCreator : MonoBehaviour
     [HideInInspector] Vector2Int gridSize;
 
     public Vector2Int GetGridSize() => gridSize;
+
+    [Inject] CameraManager cameraManager;
    
     public void Create(Vector2Int gridSize)
     {
@@ -34,7 +37,7 @@ public class GridCreator : MonoBehaviour
 
         transform.position = -size;
 
-        AccsessManager.Instance.cameraManager.AdjustCameraSizeToRectangle(gridSize);
+        cameraManager.AdjustCameraSizeToRectangle(gridSize);
         ActionManager.GridAreaReady?.Invoke();  
     }
 }
