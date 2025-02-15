@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 
 public class Puzzle : MonoBehaviour, IMoveable
@@ -10,7 +11,11 @@ public class Puzzle : MonoBehaviour, IMoveable
 
     Vector3 startPos = default;
     Camera cam;
-    [SerializeField] Vector3 startScale = Vector3.one;
+
+    [SerializeField] 
+    Vector3 startScale = Vector3.one;
+
+   private GameAudioManager audioManager;
 
     private void Start()
     {
@@ -18,6 +23,12 @@ public class Puzzle : MonoBehaviour, IMoveable
         manager = PuzzleManager.Instance;
         transform.localScale = startScale;
 
+    }
+
+    [Inject]
+    private void Constuructor(GameAudioManager audioManager)
+    {
+        this.audioManager = audioManager;
     }
 
     public void SetStartPos(Vector3 pos) => startPos = pos;
@@ -62,7 +73,7 @@ public class Puzzle : MonoBehaviour, IMoveable
         {
             GridManager.Instance.Placement();
             manager.CollectPuzzle(this);
-            AudioManager.Instance.PlaySound(AUDIO_TYPE.PLACEMENT_PUZZLE);
+            GameAudioManager.Instance.PlaySound(AUDIO_TYPE.PLACEMENT_PUZZLE);
             GameManager.Instance.AddMove();
             Destroy(gameObject);
            

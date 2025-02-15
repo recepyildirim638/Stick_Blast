@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 public class FillSquare : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class FillSquare : MonoBehaviour
         sequence.Append(transform.DOScale(7f, .2f).From(2.5f));
         sequence.Append(transform.DOScale(5f, .4f));
         spriteRenderer.DOColor(ThemaManager.Instance.complateFillsquereColor, .4f).From(Color.white);
-        AudioManager.Instance.PlaySound(AUDIO_TYPE.FILL);
+        GameAudioManager.Instance.PlaySound(AUDIO_TYPE.FILL);
 
     }
 

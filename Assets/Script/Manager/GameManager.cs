@@ -1,21 +1,21 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using Zenject;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public static bool ISGAME  = false;
-    public DataManager dataManager;
-    [SerializeField] AudioManager audioManager;
+    [Inject] private DataManager dataManager;
+   
+
     MainData mainData;
 
     private void Awake()
     {
         dataManager.Initalize();
         mainData = dataManager.GetMainData();
-        audioManager.GameLoaded(mainData.sound);
+        GameAudioManager.Instance.GameLoaded(mainData.sound);
 
-        ISGAME = true;
         SetNewGame();
     }
     private void OnEnable()
@@ -40,7 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
             mainData.sound = false;
         else mainData.sound = true;
 
-        audioManager.GameLoaded(mainData.sound);
+        GameAudioManager.Instance.GameLoaded(mainData.sound);
     }
 
     public void AddMove()
@@ -52,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameWin()
     {
-        ISGAME = false;
+    //    ISGAME = false;
         mainData.level++;
 
         //DOVirtual.DelayedCall(1.6f, () => {
@@ -64,7 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameFail()
     {
-        ISGAME = false;
+       // ISGAME = false;
         //DOVirtual.DelayedCall(1.6f, () => {
         //    GridManager.Instance.ResetAll();
         //    PuzzleManager.Instance.ResetAll();
@@ -76,7 +76,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
        // levelTaskManager.SetLevelTask();
        // PuzzleManager.Instance.CreatePuzzle();
-        ISGAME = true;
+       // ISGAME = true;
        // levelUI.SetLevelIndex(mainData.level);
 
         //moveCount = 0;

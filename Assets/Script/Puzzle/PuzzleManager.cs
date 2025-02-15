@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PuzzleManager : MonoSingleton<PuzzleManager> 
 {
@@ -16,6 +17,8 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
     List<Puzzle> createdPuzle = new List<Puzzle>();
 
     int added = 0;
+
+
 
     private void OnEnable()
     {
@@ -75,7 +78,7 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
             createdPuzle.Add(create.GetComponent<Puzzle>());
         }
         DOVirtual.DelayedCall(0.4f, () => {
-            AudioManager.Instance.PlaySound(AUDIO_TYPE.CREATED_PUZZLE);
+            GameAudioManager.Instance.PlaySound(AUDIO_TYPE.CREATED_PUZZLE);
         });
        
     }

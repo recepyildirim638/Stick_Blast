@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class LevelUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI levelText;
-    
+
+    [Inject]
+    DataManager dataManager;
+
 
     private void OnEnable()
     {
@@ -21,7 +25,7 @@ public class LevelUI : MonoBehaviour
 
     private void GridAreaReadyFunc()
     {
-        int level = AccsessManager.Instance.dataManager.GetMainData().level;
+        int level = dataManager.GetMainData().level;
         SetLevelIndex(level);
     }
     public void SetLevelIndex(int val) => levelText.text =  "Level: " + (val + 1).ToString();

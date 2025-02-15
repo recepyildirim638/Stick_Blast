@@ -31,8 +31,7 @@ public class MoveManager : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.ISGAME)
-            return;
+       
 
         if (Input.GetMouseButtonDown(0))
         {

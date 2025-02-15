@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class GridFillManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GridFillManager : MonoBehaviour
     [SerializeField] Transform baseParent;
 
     BaseGridPool pool;
+
+    
 
     private void Start()
     {
@@ -69,7 +72,7 @@ public class GridFillManager : MonoBehaviour
             fillSquareList[(line + (i * width))].GetComponent<FillSquare>().ClearGrid();
             ActionManager.ClearGrid?.Invoke((line + (i * width)));
         }
-        AudioManager.Instance.PlaySound(AUDIO_TYPE.CLEAR_LINE);
+        GameAudioManager.Instance.PlaySound(AUDIO_TYPE.CLEAR_LINE);
     }
     public void ClearHorizontal(int line)
     {
@@ -78,7 +81,7 @@ public class GridFillManager : MonoBehaviour
             fillSquareList[i + (line * width)].GetComponent<FillSquare>().ClearGrid();
             ActionManager.ClearGrid?.Invoke(i + (line * width));
         }
-        AudioManager.Instance.PlaySound(AUDIO_TYPE.CLEAR_LINE);
+        GameAudioManager.Instance.PlaySound(AUDIO_TYPE.CLEAR_LINE);
     }
 
     public void ControlComplate()
