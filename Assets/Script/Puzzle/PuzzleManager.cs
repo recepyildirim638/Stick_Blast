@@ -49,7 +49,7 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
         float height = cam.orthographicSize * 2f;
         Vector3 camPos = cam.transform.position;
 
-        float bottomPos = (camPos.y - height / 2) + 10f;
+        float bottomPos = (camPos.y - height / 2) + 6f;
         transform.position = new Vector3(0f, bottomPos, 0f);    
 
       

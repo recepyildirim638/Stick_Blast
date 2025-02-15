@@ -2026,8 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe90d6b42b341446a1680c0b29696a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oran: 6
-  space: 10
+  puzzleSpaceScale: 6
 --- !u!1 &557204950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4875,6 +4874,8 @@ MonoBehaviour:
   - {fileID: 1951875708}
   - {fileID: 1741306637}
   - {fileID: 642868420}
+  puzzleCalculteList: 
+  calculatedList: 
 --- !u!4 &1489493409
 Transform:
   m_ObjectHideFlags: 0
