@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class LevelTaskManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class LevelTaskManager : MonoBehaviour
     int diamontTask = 0;
     int starTask = 0;
 
+    [Inject] DataManager dataManager;
     private void OnEnable()
     {
         ActionManager.GridAreaReady += GridAreaReadyFunc;
@@ -68,7 +70,8 @@ public class LevelTaskManager : MonoBehaviour
     {
         if(diamontTask == 0 && starTask == 0)
         {
-            GameManager.Instance.GameWin();
+            MainData mainData = dataManager.GetMainData();
+            mainData.level++;
             ActionManager.GameEndWin?.Invoke();
         }
     }

@@ -145,11 +145,7 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
                 return;
         }
 
-        GameManager.Instance.GameFail();
         ActionManager.GameEndFail?.Invoke();
-
-       
-     
     }
 
     public void ResetAll()

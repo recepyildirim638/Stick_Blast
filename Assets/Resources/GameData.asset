@@ -17,3 +17,5 @@ MonoBehaviour:
     sound: 1
     vibration: 1
     level: 0
+    minGridSize: 4
+    maxGridSize: 10

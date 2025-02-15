@@ -10,8 +10,7 @@ public class ColButtonUI : MonoBehaviour
     Button button;
 
     int val = 5;
-    [SerializeField] int maxValue = 10;
-    [SerializeField] int minValue = 4;
+  
 
     [Inject] DataManager dataManager;
 

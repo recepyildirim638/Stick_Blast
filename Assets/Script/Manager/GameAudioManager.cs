@@ -4,9 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Zenject;
 
 public class GameAudioManager : MonoSingleton<GameAudioManager>
 {
+    [Inject] DataManager dataManager;
     [SerializeField] AudioMixer audioMixer;
 
     public const string MASTER = "Master";
@@ -19,6 +21,33 @@ public class GameAudioManager : MonoSingleton<GameAudioManager>
     [SerializeField] AudioSource puzzleCreated;
     [SerializeField] AudioSource fillSFX;
     [SerializeField] AudioSource clearLineSFX;
+
+    public void Initalize()
+    {
+        GameLoaded(dataManager.GetMainData().sound);
+    }
+
+    private void OnEnable()
+    {
+        ActionManager.ChangeSound += ChangeSoundFunc;
+    }
+    private void OnDisable()
+    {
+        ActionManager.ChangeSound -= ChangeSoundFunc;
+    }
+
+    private void ChangeSoundFunc()
+    {
+        MainData mainData = dataManager.GetMainData();
+
+        if (mainData.sound)
+            mainData.sound = false;
+
+        else mainData.sound = true;
+
+        GameLoaded(mainData.sound);
+    }
+
     public void GameLoaded(bool sound)
     {
         SetSound(sound);
