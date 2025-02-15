@@ -8,6 +8,21 @@ public class CreateNewGamePanel : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] Button button;
 
+    private void OnEnable()
+    {
+        ActionManager.ResetGameArea += ResetAll;
+    }
+    private void OnDisable()
+    {
+        ActionManager.ResetGameArea -= ResetAll;
+    }
+
+    public void ResetAll()
+    {
+        panel.SetActive(true);
+
+    }
+
     private void Start()
     {
         button.onClick.AddListener(() => ButtonOnClick());

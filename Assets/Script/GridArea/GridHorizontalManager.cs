@@ -55,6 +55,7 @@ public class GridHorizontalManager : MonoBehaviour
         for (int i = 0; i < horizontallLines.Length; i++)
         {
             horizontallLines[i].ClearGrid();
+            horizontallLines[i].gameObject.SetActive(false);
         }
     }
 

@@ -35,7 +35,7 @@ public class GridFillManager : MonoBehaviour
                 GameObject obj = pool.GetPoolItem(BASEGRID_TYPE.FILL);
                 obj.transform.parent = baseParent;
                
-                obj.transform.localPosition = new Vector2(j * 6f, i * (-6f));
+                obj.transform.localPosition = new Vector3(j * 6f, i * (-6f),1f);
                 fillSquareList[index] = obj;
                 index++;
 

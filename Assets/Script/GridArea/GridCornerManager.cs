@@ -57,7 +57,8 @@ public class GridCornerManager : MonoBehaviour
         cornersHoverList.Clear();
         for (int i = 0; i < corners.Length; i++)
         {
-            corners[i].ClearGrid();   
+            corners[i].ClearGrid();
+            corners[i].gameObject.SetActive(false);
         }
     }
 

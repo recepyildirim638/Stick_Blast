@@ -16,6 +16,15 @@ public class GridManager : MonoSingleton<GridManager>
 
     private bool isOk = false;
 
+    private void OnEnable()
+    {
+        ActionManager.ResetGameArea += ResetAll;
+    }
+    private void OnDisable()
+    {
+        ActionManager.ResetGameArea -= ResetAll;
+    }
+
     public void CreatNewGame(Vector2Int size)
     {
         gridCreator.Create(size);
@@ -34,6 +43,7 @@ public class GridManager : MonoSingleton<GridManager>
     {
         fillVerticleList.Clear();
         fillHorizantalList.Clear();
+
         gridVerticalManager.ResetAll();
         gridHorizontalManager.ResetAll();
         gridCornerManager.ResetAll();
@@ -108,7 +118,7 @@ public class GridManager : MonoSingleton<GridManager>
         if (resut == false) return false;
 
         p = point + new Vector2Byte(0, 1);
-        Debug.Log(p);
+
         resut = gridHorizontalManager.GetHorizontalLineGrid(p).GetFill();
 
         if(resut == false) return false;

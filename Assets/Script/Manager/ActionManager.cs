@@ -17,4 +17,5 @@ public class ActionManager : MonoBehaviour
     
     
     public static Action GridAreaReady { get; set; }
+    public static Action ResetGameArea { get; set; }
 }

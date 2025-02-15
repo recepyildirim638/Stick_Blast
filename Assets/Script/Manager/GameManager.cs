@@ -5,21 +5,15 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     public static bool ISGAME  = false;
-   // [SerializeField] LevelTaskManager levelTaskManager;
     public DataManager dataManager;
     [SerializeField] AudioManager audioManager;
-  //  [SerializeField] LevelUI levelUI;
-   // [SerializeField] MoveCount moveCountUI;
     MainData mainData;
 
-    int moveCount = 0;
     private void Awake()
     {
         dataManager.Initalize();
         mainData = dataManager.GetMainData();
         audioManager.GameLoaded(mainData.sound);
-     //   levelUI.SetLevelIndex(mainData.level);
-       // moveCountUI.SetMoveIndex(moveCount);
 
         ISGAME = true;
         SetNewGame();
@@ -51,7 +45,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void AddMove()
     {
-        moveCount++;
+        
       //  moveCountUI.SetMoveIndex(moveCount);
     }
 

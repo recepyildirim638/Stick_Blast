@@ -20,11 +20,13 @@ public class PuzzleManager : MonoSingleton<PuzzleManager>
     private void OnEnable()
     {
         ActionManager.GridAreaReady += GridAreaReadyFunc;
+        ActionManager.ResetGameArea += ResetAll;
 
     }
     private void OnDisable()
     {
         ActionManager.GridAreaReady -= GridAreaReadyFunc;
+        ActionManager.ResetGameArea -= ResetAll;
 
     }
 

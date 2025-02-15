@@ -50,6 +50,7 @@ public class GridVerticalManager : MonoBehaviour
         for (int i = 0; i < verticalLines.Length; i++)
         {
             verticalLines[i].ClearGrid();
+            verticalLines[i].gameObject.SetActive(false);
         }
     }
 

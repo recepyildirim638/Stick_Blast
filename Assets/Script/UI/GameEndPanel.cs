@@ -40,7 +40,8 @@ public class GameEndPanel : MonoBehaviour
     {
         menu.gameObject.SetActive(false);
         panel.SetActive(false);
-        GameManager.Instance.SetNewGame();
+        ActionManager.ResetGameArea?.Invoke();
+      //  GameManager.Instance.SetNewGame();
     }
   
 }
