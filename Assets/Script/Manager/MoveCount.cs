@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class MoveCount : MonoBehaviour
@@ -8,12 +9,20 @@ public class MoveCount : MonoBehaviour
      private void OnEnable()
     {
         ActionManager.GridAreaReady += GridAreaReadyFunc;
+        ActionManager.PlacementPuzzle += PuzzlePlacamentPuzzle;
 
     }
     private void OnDisable()
     {
         ActionManager.GridAreaReady -= GridAreaReadyFunc;
+        ActionManager.PlacementPuzzle -= PuzzlePlacamentPuzzle;
 
+    }
+
+    private void PuzzlePlacamentPuzzle()
+    {
+        moveCount++;
+        SetMoveIndex();
     }
 
     private void GridAreaReadyFunc()

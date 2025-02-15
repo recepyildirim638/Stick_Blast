@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -74,10 +75,8 @@ public class Puzzle : MonoBehaviour, IMoveable
             GridManager.Instance.Placement();
             manager.CollectPuzzle(this);
             GameAudioManager.Instance.PlaySound(AUDIO_TYPE.PLACEMENT_PUZZLE);
-            GameManager.Instance.AddMove();
+            ActionManager.PlacementPuzzle?.Invoke();
             Destroy(gameObject);
-           
-            
         }
         else
         {
